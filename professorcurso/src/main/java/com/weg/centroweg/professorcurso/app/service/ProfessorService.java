@@ -8,6 +8,8 @@ import com.weg.centroweg.professorcurso.domain.repository.ProfessorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ProfessorService {
@@ -29,6 +31,14 @@ public class ProfessorService {
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
 
         return mapper.toDto(professor);
+    }
+
+    public List<ProfessorResponseDto> listarProfessores(){
+
+        return professorRepository.findAll()
+                .stream()
+                .map(mapper::toDto)
+                .toList();
     }
 
     public ProfessorResponseDto atualizarProfessor(Long id, ProfessorRequestDto request){
