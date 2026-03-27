@@ -35,6 +35,13 @@ public class CursoService {
         return cursoMapper.toDto(curso);
     }
 
+    public List<CursoResponseDto> listarCursos(){
+        return cursoRepository.findAll()
+                .stream()
+                .map(cursoMapper::toDto)
+                .toList();
+    }
+
     public CursoResponseDto buscarCursoPorId(Long id){
         Curso curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Curso não encontrado"));

@@ -34,6 +34,13 @@ public class CursoController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping
+    public ResponseEntity<List<CursoResponseDto>> findAll () {
+        List<CursoResponseDto> response = service.listarCursos();
+
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/professores/id/{professorId}")
     public ResponseEntity<List<CursoResponseDto>> findByProfessorId (@PathVariable Long professorId) {
 
